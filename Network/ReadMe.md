@@ -5,11 +5,21 @@
 > | ----- | ---------------------- | ---- | ----------- | ----------- |
 > | 7계층 | Application Layer (L7) |      |             | 메세지      |
 > |6계층| Presentaion Layer (L6)| 표현 계층 |  Application |메세지
-> |5계층| Session Layer (L5) |||메세지|
+>
+> | 5계층 | Session Layer (L5) |      |      | 메세지 |
+> | ----- | ------------------ | ---- | ---- | ------ |
+> |       |                    |      |      |        |
 > |4계층| Transport Layer (L4)| 전송 계층 |Trasport Layer |세그먼트
-> |3계층| Network Layer (L3)| |Internet| 패킷|
-> |2계층| Data Link Layer (L2)| ||프레임|
-> |1계층| Physical Layer (L1)| 물리 계층 | network Access|비트|
+> | 3계층 | Network Layer (L3) |      | Internet | 패킷 |
+> | ----- | ------------------ | ---- | -------- | ---- |
+> |       |                    |      |          |      |
+> | 2계층 | Data Link Layer (L2) |      |      | 프레임 |
+> | ----- | -------------------- | ---- | ---- | ------ |
+> |       |                      |      |      |        |
+> | 1계층 | Physical Layer (L1) | 물리 계층 | network Access | 비트 |
+> | ----- | ------------------- | --------- | -------------- | ---- |
+> |       |                     |           |                |      |
+>
 > **TCP/IP는 이론보다 실용성에 중점을 둔 프로토콜**
 >
 >   ##  1계층(Physical Layer)
