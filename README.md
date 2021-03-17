@@ -12,4 +12,3 @@
 # 운영체제
 
 [운영체제 정리](https://github.com/shkimm5189/today-i-learned/tree/main/OS)
-
