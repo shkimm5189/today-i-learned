@@ -10,6 +10,7 @@
 |3계층| Network Layer (L3)| |Internet| 패킷|IP,ICMP,IGMP,ARP,RARP|
 |2계층| Data Link Layer (L2)| ||프레임|
 |1계층| Physical Layer (L1)| 물리 계층 | network Access|비트|
+
 **TCP/IP 프로토콜은 이론보다 실용성에 중점을 둔 프로토콜**
 
 ##  1계층(Physical Layer)
