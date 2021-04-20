@@ -1,4 +1,4 @@
-> > # 네트워크 정리
+# 네트워크 정리
 > > 네트워크를 정리하면서 이해할 수 있게 해보자 by saintKim
 > > # OSI-7 계층(TCP/IP 모델)
 > > | Layer | 이름                   |      | TCP/IP 모델 | 데이터 단위 | protocol |
