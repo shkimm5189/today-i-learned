@@ -43,6 +43,101 @@ ACK(Acknowledge Number) : 응답 번호
 | 전이중(Full Duplex)            | 반이중(Half Duplex)                  |
 | 데이터 전송                    | 실시간 트래픽 전송                   |
 
+# L7 Protocol
+## DNS
+### 1. DNS 개요
+도메인 주소를 IP주소로 변환하는 역할.
+모든 링크 주소들은 IP주소를 사용한다. 하지만 모든 IP들을 기억 할수 없기 때문에 도메인 주소를 사용한다. 
+서비스를 도메인 주소로 사용하더라도 실제 패킷을 만들어 통신하기 위해서 IP주소를 알아야하고 문자열로된 도메인주소를 실제 통신에 필요한 IP 주소로 변환하는 **DNS**정보를 설정해야한다.
+
+
+### 2. DNS 동작방식
+도메인을 IP주소로 변환하려면 DNS서버에 도메인을 쿼리 해야함.
+
+---
+but, DNS 서버없이 로컬에 도메인과 IP주소를 직접 설정해 사용할수 있다.
+
+> 리눅스의 경우 /etc/hosts 파일에 정보를 저장
+
+hosts 파일 설정시 도메인 리스트는 항상 DNS캐시에 저장.
+
+---
+도메인을 DNS서버에 쿼리 하기전 로컬에 있는 DNS캐시 정보를 **항상**  먼저 확인함.
+=> 동일한 도메인 요청 시 질의를 새로 하지않고 캐시를 참조하여 성능 향상.
+> DNS 캐시 정보 = 기존 DNS 조회를 통해 확인한 동적 DNS캐시 + (hosts 파일) 정적 DNS 캐시
+
+DNS 캐시 정보에 필요한 도메인이 없다면 서버로부터 쿼리를 수행후 캐시에 먼저 저장.
+
+> DNS 통신 시, PC 네트워크 설정 시 DNS서버를 같이 설정 해주어야함.
+>
+> ### 3.  알아두면 좋을 내용
+- 도메인 위임
+```
+
+```
+
+- TTL
+- 화이트 도메인
+- 한글 도메인
+## TELNET
+원격 제어 프로토콜
+using :TCP port : 23
+## HTTP
+웹 페이지 프로토콜
+using : TCP port : 80
+## FTP
+파일 전송 프로토콜
+ACTIVE MOD
+PASSIVE MOD
+
+
+## TFTP
+파일 전송 프로토콜
+using : UDP port : 69
+
+UDP 프로토콜을 사용하므로 신뢰성을 보장하지 못한다. 
+따라서, 저장된 서버에서 확인을 다시 해야할 필요가 있다.
+```
+router에서 tftp의 서버에 저장하기
+
+router> en
+router# dir nvram: 		// 파일목록확인
+// startup-config   => 라우터 시작시 설정 파일
+router# copy startup-config tftp:
+router# // 저장될 tftp 서버의 ip 입력
+router# // 파일의 저장될 이름 입력
+```
+
+
+## SMTP
+메일 전송 프로토콜 
+port : 25
+
+
+## DHCP
+동적으로 IP를 할당하는 프로토콜
+
+### 1.개요
+BOOTP(bootstrap)프로토콜을 기반으로 함.
+client port : 68
+server port : 67
+
+### 2. 동작 방식
+#### 2.1 신규 IP를 할당받는 과정 (4단계로 이루어짐)
+```
+1. DHCP Discover
+ - DHCP 클라이언트는 DHCP 서버를 찾기위해 메세지를 브로드캐스트로 전송
+-> 아직 아이피가 없기때문에 UDP 사용 (c : 68 , s : 67)
+2. DHCP Offer
+ - DHCP Discover를 수신한 DHCP 서버는 클라이언트에 할당할 IP주소, 서브넷, 게이트웨이, DNS 정보, Lease(임대) Time등의 정보를 포함한 메세지를 클라이언트로 전송
+
+3. DHCP Request
+ - DHCP 서버로부터 제안받은 IP주소와 DHCP 서버정보를 포함한 DHCP 요청 메세지를 브로드캐스트로 전송.
+
+4. DHCP Acknowledgement
+ - DHCP 클라이언트로부터 IP주소를 사용한다는 요청을 받으면 DHCP서버는 해당 IP를 어떤 클라이언트가 언제부터 사용하기 시작했는지 정보를 기록하고 응답을 전송.
+```
+
 |      |      |
 | ---- | ---- |
 |      |      |
