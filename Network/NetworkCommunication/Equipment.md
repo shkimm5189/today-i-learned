@@ -90,10 +90,15 @@ ARP 테이블과 MAC테이블은 일정한 시간동안 지워지지 않는다
 why? vlan으로 구분된 네트워크에서는 브로드캐스트인 ARP request가 다른 vlan으로 전달될수 없기에 3계층 장비가 필요<br>
 vlan이 다르다는 것은 별도의 네트워크로 분할 한것 -> 네트워크가 다르고 IP 주소할당도 다른 네트워크로 할당됨.
 
+
+<br>
+
 |Access Port|Trunk(tagged) Port|
 |--|--|
 |일반 단말이 사용하는 포트|스위치간 태그(trunk)를 위한 포트 |
-
+#### native vlan
+트렁크 포트에는 태그를 모두 달지만 native 지정된 vlan에는 태그를 지정하지 않는다. <br>
+why? 모든 vlan에 태그를 달면 스위치에서 인캡슐레이션이 계속 일어나기 때문에 속도 저하되기 때문에 하나의 태그포트에 native가 자동지정된다.
 ```
 다른 스위치의 vlan 간에 통신을 위한 포트를 각각 지정해야한다.
 ex) 2개의 스위치에 vlan 3개가 존재할경우, 각각 3개의 통신을 위한 포트를 지정 해야함.
@@ -335,6 +340,21 @@ metric : cost(계산된 bandwidth)
 ```
 
 
+
+### ACL (Access Control List)
+host,network에 대해 접근 목록(allow, permit)/거부(deny)에 대한 정책들의 목록
+
+#### 방법
+```
+1. 정책을 만듦(여러 정책을 하나의 그룹으로 묶음)
+2. 만든 정책을 interface에 적용함(in/out)
+```
+
+정책을 만들 조건에 따라
+- 표준(Standard) ACL
+누가(src addr)
+- 확장(Extended ACL)
+누가,어디로,무엇때문에(목적)(src/dst , ip/port)
 
 ### 라우터 IP 주소 할당(cisco)
 
