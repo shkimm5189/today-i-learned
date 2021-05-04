@@ -4,10 +4,15 @@
 
 
 ---
-# 네트워크
+## 네트워크
 [네트워크 정리](https://github.com/shkimm5189/today-i-learned/tree/main/Network)
 
-# 운영체제
+## 운영체제
 [운영체제 정리](https://github.com/shkimm5189/today-i-learned/tree/main/OS)
 
 [리눅스 기초 정리](https://github.com/shkimm5189/today-i-learned/tree/main/Linux)
+
+
+
+# 읽은 책 / 읽어볼 책
+- 15단계로 배우는 도커와 쿠버네티스
