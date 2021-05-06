@@ -56,9 +56,11 @@ file의 data block을 통해 실제 디스크의 데이터 섹터 접근후 표�
 - **execute**
 file의 data block을 통해 접근한 데이터 섹터의 파일 내용에 access하는 것
 <br>
+
 **directory rwx**
+
 - **read**
-directory의 data block을 통해 실제 디스크의 데ㅐ이터 섹터로 접근 후 그 내용을 표준 출력 or 지정된 터미널로 출력
+directory의 data block을 통해 실제 디스크의 데이터 섹터로 접근 후 그 내용을 표준 출력 or 지정된 터미널로 출력
 
 - **write**
 directory의 data block을 통해 실제 디스크의 데이터 섹터 접근후 표준 입력 or 데이터를 접근 한 섹터에 write 하는 과정
@@ -66,9 +68,9 @@ directory의 data block을 통해 실제 디스크의 데이터 섹터 접근후
 - **execute**
 directory의 data block을 통해 접근한 데이터 섹터의 파일 내용에 access하는 것
 
-read : cat head tail ls
-write : mkdir > >> touch cp mv rm rmdir
-exxecute : cd
+read : cat head tail ls<br>
+write : mkdir > >> touch cp mv rm rmdir<br>
+exxecute : cd<br>
 
 
 ### 3.2 chmod
@@ -79,6 +81,7 @@ r(4)w(2)x(1)로 부여가능
 
 - 심볼릭 모드
 ``chmod "mode" test1``
+
 
 |옵션|설명|
 |--|--|--|
