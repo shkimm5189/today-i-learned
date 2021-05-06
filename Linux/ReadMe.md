@@ -84,7 +84,7 @@ r(4)w(2)x(1)로 부여가능
 
 
 |옵션|설명|
-|--|--|--|
+|--|--|
 |ugoa|u = user<br>g = group <br>o = others<br>a = all|
 |+-=|+ 권한 추가<br>- 권한 삭제 <br> = 입력된 권한만 추가 (입력 안된 권한들은 삭제된다.)|
 |rwx|read write execute|
