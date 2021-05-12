@@ -281,3 +281,78 @@ mount | grep '장치명'
 
 lost-found : 파일 시스템의 오류를 체크할때 발견되 파일들이 복구되는 디렉토리, 마운트 해제 시 보이지않음.
 ```
+
+
+### 7.4 Swap(스왑) 메모리
+
+
+#### 7.4.1 swap영역을 구성하는 방식
+- 장치를 추가 해서 사용하는 방식
+```
+swap 파티션 구성
+fdisk -> mkswap(mkfs와 같음) -> swapon (mount와 같다)
+
+swap file 구성
+mkdir -> dd swap (영역의 모든 데이터를 0으로 초기화)
+-> mkswap -swapon
+
+영구적인 적용을 위해 /etc/fstab에 저
+```
+- 디렉토리를 스왑 디렉토리로 구성하는 방식
+swap file 구성
+```bash
+mkdir /swapdir # 스왑 디렉토리 구성
+
+dd if=/dev/zero of=/swapdir/swapfile bs=1M count=1024 # /dev/zero파일을 swapfile로 1024M 크기만큼 복사
+
+chmod 600 /swapdir/swapfile # 사용자만 읽고 쓰면된다.
+
+mkswap  /swapdir/swapfile  # swapfile을 swap영역으로 설정
+
+swapon /swapdir/swapfile # 파일/장치를 페이징과 스와핑을 허용
+```
+
+
+> /dev/zero
+읽기를 위해 가능한 많은 널문자를 제공하는 특수 파일,일반적인 용도 데이터 스토리지를 초기화 하기위한 문자스트림 제공
+fdisk 했을때 linux의 스왑메모리 헥사 코드는 82
+
+### 7.5 논리 볼륨 관리
+### 7.5.1 개요
+- 논리 볼륨의 구성 순서
+> 물리 볼륨 -> 볼륨 그룹 -> 논리 볼륨
+
+- 기존의 파티션으로 디스크를 관리 -> 유연하게 사용할수없었다.
+- 디스크를 유연하게 사용할수 있게 만들어 준다.
+- 데이터를 유지한 상태로 볼륨 확장, 제거 가능
+- RAID 적용가능
+
+
+#### 7.5.2 물리 볼륨
+- 파티션 단위로 생성.
+```bash
+pvcreate partion1 partion2 ...
+```
+#### 7.5.3 볼륨 그룹
+- 최소 한개 이상의 물리볼륨이 필요
+- 물리 볼륨의 집합으로 구성
+- 볼륨 그룹 생성시 PE의 크기 지정 (Physical Extent, 기본 2^2M에서 2^8M 까지 가능,<br>안쓰는 PE모아서 따로 그룹을 지정해서 사용할수있다. (동적할당)
+> PE는 볼륨 그룹에 소속된 물리 볼륨을 분할하는 최소 단위로
+디스크 내에서 연속된 공간을 차지한다.
+
+```bash
+vgcreaete [op] pv vg-name
+-s : PE의 크기를 지정 할수있다 (선언 안하면 default값 : 4M)
+```
+
+#### 7.5.4 논리 볼륨
+lvextend 추가적으로 확장시 추가된 볼륨에는 파일 시스템이 적용되지 않아 마운트가 제대로 안될수있음. -r 옵션을 사용하면 파일 확장 명령어를 따로 입력하지 않아도됨.
+lvreduce 축소시에는 논리적으로 문제가 생길수있다. (확장은 쉽지만 축소는 어렵다.)
+```bash
+-l : 크기 지정
+ex)
+-L : 크기 지정
+ex)
+-n : 볼륨 그룹의 이름 지정
+```
+> 논리 볼륨을 적용 시 파티셔닝 -> pvcreate -> vgcreate ->lvcreate ->  mkfs ->  /etc/fstab 등록
