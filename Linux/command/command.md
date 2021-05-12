@@ -182,5 +182,22 @@ awk '$2 > 24 {print $1"씨는"$2"세 입니다"}'
 
 
 ### ps
-
+실행중인 프로세스 확인
 ### tar
+파일 묶음
+
+
+### 파티션,디스크 관리
+fdisk, gdisk : fdisk는 MBR파티션, gdisk는 GPT파티션<br>
+mkfs : 파일 시스템 만들기 <br>
+mkfs.ex4 : ext4 파일 시스템 생성 ,ext3,ext2가능<br>
+blkid : 파일 시스템 확인 <br>
+df (-Th): 파일 시스템 확인<br>
+lsblk : 파일 시스템 확인<br>
+
+파일 시스템 만들고<br>
+mount : 마운팅 포인트에 디스크 마운트<br>
+  -a /etc/fstable에 있는 장치 모두 마운트
+
+umount : 마운트 해제
+  -a 모든 장치 마운트 해제
