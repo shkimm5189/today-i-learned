@@ -204,8 +204,6 @@ ACL이 지정되지않은 디렉토리가 있을때 그 하위 디렉토리/파�
 
 
 ## 5. 프로세스
-
-
 ## 6. 작업 예약
 ### 1. at
 - 1회성 작업 예약
@@ -215,8 +213,6 @@ ACL이 지정되지않은 디렉토리가 있을때 그 하위 디렉토리/파�
 at -l  alias atq
 ```
 ### 1.2 at 설치
-
-
 ### cron
 - crond 데몬에서 관리
 - crontab 에서 명령어 관리
@@ -284,8 +280,6 @@ lost-found : 파일 시스템의 오류를 체크할때 발견되 파일들이 �
 
 
 ### 7.4 Swap(스왑) 메모리
-
-
 #### 7.4.1 swap영역을 구성하는 방식
 - 장치를 추가 해서 사용하는 방식
 ```
@@ -341,18 +335,162 @@ pvcreate partion1 partion2 ...
 디스크 내에서 연속된 공간을 차지한다.
 
 ```bash
-vgcreaete [op] pv vg-name
+vgcreaete [op] vg-name pv-name
 -s : PE의 크기를 지정 할수있다 (선언 안하면 default값 : 4M)
+
+vgextend vg-name pv-name
 ```
 
 #### 7.5.4 논리 볼륨
-lvextend 추가적으로 확장시 추가된 볼륨에는 파일 시스템이 적용되지 않아 마운트가 제대로 안될수있음. -r 옵션을 사용하면 파일 확장 명령어를 따로 입력하지 않아도됨.
-lvreduce 축소시에는 논리적으로 문제가 생길수있다. (확장은 쉽지만 축소는 어렵다.)
+- lvextend 추가적으로 확장시 추가된 볼륨에는 파일 시스템이 적용되지 않아 마운트가 제대로 안될수있음. -r 옵션을 사용하면 파일 확장 명령어를 따로 입력하지 않아도됨.
+- lvreduce 축소시에는 논리적으로 문제가 생길수있다. (확장은 쉽지만 축소는 어렵다.)
 ```bash
+lvcreate [op] vg-name
+
+lv 생성
+lvcreate -n lv-name -L size vg-name
+
 -l : 크기 지정
-ex)
+ex) PE size가 4M인 그룹에 lvcreate -l 100
+  400M할당됨
 -L : 크기 지정
-ex)
+ex) PE사이즈 상관없이 절대값으로 지정 lvcreate -L 1G
+  1G할당
 -n : 볼륨 그룹의 이름 지정
+
+lvextend  # lv확장 -r 옵션을 사용하여 파일시스템을 같이 적용해준다
+lvreduce  # lv 용량 감소
 ```
 > 논리 볼륨을 적용 시 파티셔닝 -> pvcreate -> vgcreate ->lvcreate ->  mkfs ->  /etc/fstab 등록
+
+
+
+
+## 8. Systemd
+```
+init
+- 쉘 스크립트 기반으로 동작
+- /etc/inittab : 실행시 시작한 runlevel 저장
+- /etc/init.d : 동작 시킬 스크립트 파일 저장
+- /etc/rc?.d : 해당 런레벨로 지정할시 실행되는 프로그램 저장
+
+runlevel : systemd의 'target' 개념과 대치된다.
+
+현재,init는 Systemd로 대체 되었다.
+```
+- unit 단위로 서비스를 관리한다.
+  - 서비스 유닛 - http, sshd, ftp,
+  - 소켓 유닛 - 프로세스간의 통신을 위해 생성
+
+
+```
+systemctl status service   # 상태 확인
+systemctl start service    # 재부팅시 설정 사라짐(휘발성)
+                    # 즉시 반영된다.
+
+systemctl enable service   # 설정 영구 반영
+                    # 바로 설정되지 않고 재부팅되면 반영된다.
+                    # 심볼릭 링크가 생성됨
+
+systemctl list-units  # 현재 동작하는 유닛
+systemctl -all list-units # 모든 유닛 보기
+systemctl -t service list-units # 서비스 타입 유닛 보기
+systemctl -t target list-units # 타겟 타입 유닛 보기
+systemctl -t service  # 타입 지정
+
+systemctl stop service
+systemctl restart service  # 서비스 종료 후 재 실행 (PID 변경)
+systemctl reload service   # 서비스가 진행중인 상태에서 설정을 반영 가능 (PID 변경 안됨)
+
+systemctl mask service       # /dev/null 에 심볼릭 링크 지정
+systemctl unmask service     # mask 해제
+systemctl list-dependencies service # service의 의존성 확인
+```
+
+## 9. 부트 프로세스
+
+부트되는 과정
+1. POST (Power On Self Test)
+2. 부트로더 메모리에 적재, grub2를 적재하여 가능한 커널 목록 출력
+3. initramfs 압축을 해제하여 /sysroot에 압축 해제
+4. 필요한 파일을 메모리에 적재
+5. default.target
+6. multi-user.target (CLI)
+7. graphical.target (GUI)
+
+
+#### GUI CLI 변경
+systemctl get-default
+systemctl set-default <target-unit>
+systemctl isolate <target-unit>
+> target-unit : multi-user.target / graphical.target
+
+
+#### root passswd 변경
+
+1. 부트할때 initrd16 위에
+rd.break 삽입 # ram disk break
+2. mount -o remount,rw /sysroot
+3. chroot /sysroot
+4. touch /.autorelabel
+> 라벨링 ??
+
+
+
+## 9. 네트워크 관리
+```
+ip addr show        # ip 확인
+ip link set [network-name] down  # 인터페이스 비활성화
+
+ip a add 192.168.122.100/24 dev [network-name] # network-name에 ip주소 추가
+ip a del 192.168.122.100/24 dev [network-name] # ip주소 삭제
+
+ip route show  # 연결된네트워크의 라우터 게이트웨이 확인
+ip route add default via ip주소 dev [network-name]
+
+
+/etc/resolv.conf # DNS 서버 ip
+```
+> ip 명령어는 이제 사용하지 않는다.
+
+#### 9.2 네트워크 관리자  (nmcli)
+- 네트워크와 관련된 모든 설정을 관리하는 서비스
+- nmcli
+
+
+```
+네트워크 설정을 다시 해준다 -> DHCP 서버에서 동적 할당 해준걸 정적 할당으로 바꾼다.  
+
+nmcli ip connection show # 시스템에 존재하는 네트워크 확인
+nmcli ip connection show network-name # network-name의 세부사항 확인
+```
+#### nmcli로 네트워크 정적 할당
+```bash
+nmcli connection add con-name [이름] type [유형] ifname [활성화된 인터페이스 이름]
+```
+#### nmcli로 네트워크 정적 할당
+- static 지정 순서
+ip/SubnetMask설정 -> gateway 설정 -> dns 설정 -> 메소드 설정 )
+```bash
+nmcli ip con add con-name [이름] type [유형] ifname [활성화된 인터페이스] # type유형은 일반적으로 ethernet
+nmcli con modify [이름] ipv4.address IP주소/prefix
+nmcli con modify [이름] ipv4.dns 8.8.8.8 # 구글의 DNS서버
+nmcli con modify [이름] ipv4.gateway GATEWAY주소
+nmcli con modify [이름] ipv4.method manual # auto: 동적 manual : 정적
+# 메소드 지정 안하면static으로 해도 DHCP 서버로 요청함
+nmcli connection up [이름]  # 인터페이스에 매핑
+
+
+nmcli connection delete [이름] # []이름] 네트워크 삭제
+
+```
+#### 네트워크 설정 파일 ifcfg
+경로 ``etc/sysconfig/network-scripts/``의 하위 파일인 ifcfg 파일을 설정<br>
+nmcli 명령어를 사용해도 되고 이 파일을 설정해도 같은 결과
+> ipv4.method 의 변수이름은 BOOTPROTO이다.
+정적 설정일 경우 none 동적 설정일 경우 dhcp
+#### hostname 변경
+```
+hostname              # 호스트네임 확인
+hostnamectl set-hostname name # hostname 변경
+```
