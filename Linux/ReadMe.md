@@ -162,8 +162,8 @@ getfacl file/dir-name
 
 삭제
 -x  : 해당 ACL만 삭제
-setfacl -x u:user01 fileA  #fileA에 부여된 user01 ACL 삭제
-setfacl -x d:g:group2 fileA #fileA에 부여된 group2의 default ACL삭제
+setfacl -x u:user01 fileA  # fileA에 부여된 user01 ACL 삭제
+setfacl -x d:g:group2 dirA # dirA에 부여된 group2의 default ACL삭제
 
 -b  : 설정된 모든 ACL 삭제
 setfacl -b fileA
@@ -239,11 +239,9 @@ at -l  alias atq
 
 ```
 fdisk /dev/[장치 명]   // MBR방식
-gdisk /dev/[장치 명]  // GPT방식
+gdisk /dev/[장치 명]   // GPT방식
 lsblk // 할당된 파티션 확인
 partprobe //할당된 파티션이 안나타날 경우
-
-
 ```
 
 LBA(Logical Block Address) : 섹터의 논리적 주소
@@ -432,7 +430,7 @@ systemctl isolate <target-unit>
 rd.break 삽입 # ram disk break
 2. mount -o remount,rw /sysroot
 3. chroot /sysroot
-4. touch /.autorelabel
+4. touch /.autorelabel # 보안 때문에 변경 사항을 반영하겠다는 뜻
 > 라벨링 ??
 
 
@@ -456,8 +454,6 @@ ip route add default via ip주소 dev [network-name]
 #### 9.2 네트워크 관리자  (nmcli)
 - 네트워크와 관련된 모든 설정을 관리하는 서비스
 - nmcli
-
-
 ```
 네트워크 설정을 다시 해준다 -> DHCP 서버에서 동적 할당 해준걸 정적 할당으로 바꾼다.  
 
@@ -482,7 +478,6 @@ nmcli connection up [이름]  # 인터페이스에 매핑
 
 
 nmcli connection delete [이름] # []이름] 네트워크 삭제
-
 ```
 #### 네트워크 설정 파일 ifcfg
 경로 ``etc/sysconfig/network-scripts/``의 하위 파일인 ifcfg 파일을 설정<br>
@@ -494,3 +489,163 @@ nmcli 명령어를 사용해도 되고 이 파일을 설정해도 같은 결과
 hostname              # 호스트네임 확인
 hostnamectl set-hostname name # hostname 변경
 ```
+
+
+## 10. 시스템 로그
+systemd 시스템은 rsyslog, system-journald두 데몬에 의해 관리 됨
+systemd-journald 부팅 시작되는 순간부터 파일에 모든 로그 수집하여 rsyslog로 전달
+
+systemd-journald -> rsyslogd -> logfile
+rsyslog : 후처리를 통해 각 파일 별로 로그를 저장함
+|파일|설명|
+|--|--|
+|/var/log/messages|대부분의 로그 기록|
+|/var/log/secure|인증과 관련된 기록|
+|/var/log/mailog|메일과 관련된 기록|
+|/var/log/cron|주기적인 작업과 관련된 기록|
+|/var/log/boot.log|부팅과정에 발생된 로그 기록|
+
+
+logrotate : cron을 통해 주기적으로 실행되는 작업
+/etc/logrotate.conf : 일괄 처리 방식 지정
+/etc/logrotate.d/???  ???에 대한 개별 처리방식 지정
+
+
+rsyslog
+/etc/rsyslog.conf 파일에 rsyslog에 의해 전달되는 로그의 규칙들이 정의 되어있음
+필터(filter)와 액션(action) 필드로 구성됨.
+> 필터는 기능과 우선순위 형식으로 되어있다.
+즉, 기능 우선순위 액션으로 구성
+
+```bash
+logger "내용"
+
+/var/log/messages에 추가
+
+logger -p authpriv.err "hello"
+이 경우 /var/log/secure에 저장
+우선 순위에 따라 메세지를 보낼수있다
+
+```
+
+
+
+## 소프트웨어 패키지
+예전의 패키지 설치 방식
+- 압축 or 아카이브 -> 파일 추출 -> 컴파일 -> 설치or 사용
+
+- RPM 패키지 설치 (deb파일)
+- YUM (apt or apt-get)
+- DNF(8버전)
+
+repogitory (저장소)
+- 패키지를 저장해놓은 서버
+- /etc/yum.repos.d 디렉토리에 저장 확장자는 repo 사용
+- gpgkey 사용 여부
+  - gpgcheck = 0 or 1 (0 미사용 1사용)
+
+``sudo yum repoplist all`` yum-repos.d에 있는 repo들 등록<br>
+
+``yum-config-manager --add-repo="http주소"`` http주소의 repo 추가 <br>
+``var/log/yum.log``yum 설치로그 기록 파일
+> .bak 파일 :컴퓨터로 작업중 생길수있는 전원 차단과 같은 갑자기 컴퓨터가 꺼질 경우를 대비해 자동으로 만드는 파일, 자동으로 디렉토리의 내용을 백업해주는 파일이다.
+
+## open SSH
+- 보안상의 이유로 telnet 보다는 SSH사용이 권장됨
+> why? SSH는 데이터에 대한 암호화를 지원
+
+- 비대칭키 암호화와 대칭키 암호화 알고리즘 사용.
+- /etc/ssh 에 암호지정
+
+```
+접속 시 사용자 지정 안하면 접속이 안될수있다.
+ssh user@ip주소  형식으로 접속한다.
+
+설정파일 수정 후 재시작
+/etc/ssh/sshd_config
+```
+설정파일 관련 설정<br>
+``#PermitRootLogin yes``<br>
+- 원격 접속자의 루트 접속의 허용 여부를 설정, 보통 막아두도록하자
+- without-passwd 일경우 키 기반 인증 사용자만 접속 가능하도록함
+
+``PasswordAuthentication yes``<br>
+- 패스워드 사용여부 설정
+- no일 경우 키 기반 인증만 사용가능함
+> 키 기반 인증 사용자를 등록할때 no일 경우, 등록을 할수없으니 등록시에는 yes로 설정하자.
+
+### ssh 키 인증
+```
+server에서 /etc/ssh/sshd_config파일을 수정하고
+사용하고자 하는 client에서
+
+ssh-keygen
+
+사용하여 키 파일을 생성하고
+접속하고자 하는 서버에
+
+ssh-copy-id test@ip주소
+
+입력하여 전달하도록한다.
+```
+
+#### 권장 팁
+- root 접속은 모두 제한
+- sudo 권한이있는 사용자만 키기반 인증설정
+- 키 기반 만 접속허용
+
+### scp 로컬 파일 복사
+- cp + sshd
+`` scp [option] origin destination
+``
+
+
+
+## NTP 서버
+- 네트워크를 이용하여 정확한 시간 정보를 받아옴
+- 사용 목적: 시스템의 정확한 시간이 필요할때
+  시스템 간의 시간을 동기화가 필요할때
+```
+chronyd 는 /etc/chrony.conf 설정 파일을 참조하여 동작환경 설정
+
+
+```
+
+
+## 방화벽 firewall
+- 네트워크 패킷을 필터링하는것은 Netfilter라는 커널 모듈이고 iptables는 Netfilter의 제어 도구일 뿐이다.
+- 리눅스에서 제공하는 방화벽 서비스
+  1. iptables
+  2. firewalld
+
+### 1. iptables
+- 예전부터 사용된 오래된 방식 (여전히 사용)
+- 규칙 변경시 서비스 재시작이 필요함 -> 오픈스택이나 가상화 같은 환경에서는 제약이 있음
+
+### 2. firewalld
+#### 2.1 특징
+- XML 파일 형태로 보관
+- Runtime 및 Permanent 설정
+- 사전 정의된 영역
+- 사전 정의된 서비스
+- D-Bus사용
+
+##### 경로
+- /usr/lib/firewalld
+```
+기본 구성과 관련된 파일과 대비용 파일 저장
+```
+- /etc/firewalld
+```
+firewalld에 실제로 적용되는 설정파일과 규칙 저장
+```
+xml 파일을 직접 수정하여 방화벽 규칙 수정가능.
+
+사전에 정의 된 영역
+|||
+|--|--|
+|trusted(변경 불가)|- 모든 패킷 허용<br>- 사용에 주의 필요|
+|block|- 모든 패킷 거부<br>- 내부에서 외부로의 반환 패킷은 허용<br>- 거부된 원인을 알려준다|
+|drop|- 내부로 들어오는 모든 패킷 폐기<br>- ICMP 에러도 폐기<br>- 외부로 연결은 가능<br>- block과 차이|
+|dmz|- 내부로 들어오는 패킷 거부<br>- 외부로의 연결,ssh 서비스 허용|
+|public |- default zone<br>- 내부로 들어오는 패킷 거부|

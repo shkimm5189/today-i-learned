@@ -201,3 +201,45 @@ mount : 마운팅 포인트에 디스크 마운트<br>
 
 umount : 마운트 해제
   -a 모든 장치 마운트 해제
+
+
+### Find / locate
+- 둘 다 검색하는 명령어.
+
+#### locate
+- 사전에 준비된 데이터베이스에서 검색하는 방식 (updatedb)
+- 검색속도가 빠름
+- 기존에 없던 파일을 검색하는 것이 불가능
+- 파일 이름으로만 검색
+```bash
+명령어가 제공되지 않는다면
+yum install mlocte
+
+locate 명령어를 사용하기전에
+updatedb
+명령어를 통해 업데이트를 하고 사용하는 게 좋다.
+```
+#### Find
+- 모든 디렉토리를 다 직접 접근하면서 검색
+- locate에 비해 속도가 느림.
+- 언제든지 바로 검색 가능
+- 옵션을 사용하여 다양한 기준으로 검색가능
+```bash
+find [Path] [op] [Command]
+- command 생략시 default print이다.
+
+ex)
+find / -name fileA
+fileA 위치검색
+
+
+- exec 뒤의 커맨드 실행
+뒤의 명령 {}은 find로 부터 온 결과값을 반영한다는 뜻이다.
+
+find / -name fileA -exec ls -li {} \;
+fileA에 대해 ls -li 결과를 보여줌
+
+find / -name fileA -exec chomd r-w {} \;
+
+
+```
