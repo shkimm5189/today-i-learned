@@ -405,6 +405,11 @@ systemctl unmask service     # mask 해제
 systemctl list-dependencies service # service의 의존성 확인
 ```
 
+``/etc/systemd/resolved.conf `` systemd의 설정 <br>
+
+
+``/etc/systemd/system`` target이라고 끝나는 디렉토리가 존재하며 부팅시 해당 디렉토리를 참고하여 서비스 실행됨.
+
 ## 9. 부트 프로세스
 
 부트되는 과정
@@ -649,3 +654,57 @@ xml 파일을 직접 수정하여 방화벽 규칙 수정가능.
 |drop|- 내부로 들어오는 모든 패킷 폐기<br>- ICMP 에러도 폐기<br>- 외부로 연결은 가능<br>- block과 차이|
 |dmz|- 내부로 들어오는 패킷 거부<br>- 외부로의 연결,ssh 서비스 허용|
 |public |- default zone<br>- 내부로 들어오는 패킷 거부|
+
+
+### 2.2 firewalld 동작원리
+- 실제로 활성화된 영역(Active Zone)에서만 사용
+- firewall-cmd / /etc/firewall/services/ 에서확인 가능
+
+
+
+### 2.3firewall-cmd
+```bash
+# 현재 사용중인 영역의 정보 표시
+firewall-cmd --list-all  
+# 보고 싶은 영역 정보 표시
+firewall-cmd --list-all --zone=
+
+# default영역 변경
+firewall-cmd --set-default-zone=home # home 영역으로 변경
+```
+##### interface 추가
+```bash
+# interface 추가 zone옵션이 없다면 default 영역에 자동으로 추가됨
+firewall-cmd --add-interface=ens08
+
+# public 영역에 ens8 인터페이스 추가
+firewall-cmd --add-interface=ens08 --zone=public
+```
+
+##### 서비스 규칙 추가
+```bash
+# ssh 서비스를 home 영역에 추가
+firewall-cmd --add-service=ssh --zone=home
+
+# ssh 서비스를 home 영역에서 제거
+firewall-cmd --remove-service=ssh --zone=home
+```
+##### 포트 규칙 추가
+```bash
+# 10123/tcp 포트를 home영역에 추가
+firewall-cmd --add-port=10123/tcp --zone=home
+# 10123/tcp 포트를 home영역에서 삭제
+firewall-cmd --remove-port=10123/tcp --zone=home
+```
+> 특정 포드를 열어주려면 허용할 프로토콜 유형(TCP/UDP)을 함께 지정해야함. 같은 포트라도 유형이 다르면 다른 규칙으로 인식됨.
+
+##### 출발지 주소 규칙 추가
+```bash
+# 특정 주소 값만 입력하면됨
+firewall-cmd --add-source=192.168.122.3 --zone=home
+
+# 192.168.0.0 ~ 192.168.0.255 범위의 허용
+firewall-cmd --add-source=192.168.0.0/24 --zone=home
+```
+
+### Runtime 설정과 Permanent 설정
