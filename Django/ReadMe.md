@@ -36,7 +36,7 @@
 
 # 3. 프로젝트 구조
 ## Django 파일 구조
-<img src="img/proStruct.png" width="" height="">
+<img src="img/proStruct.png" width="200" height="300">
 
 |directory|Role|
 |--|--|
