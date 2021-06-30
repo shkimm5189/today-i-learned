@@ -1,0 +1,700 @@
+<!DOCTYPE html><html><head>
+      <title>ReadMe</title>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.2/dist/katex.min.css">
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      <style>
+      /**
+ * prism.js Github theme based on GitHub's theme.
+ * @author Sam Clarke
+ */
+code[class*="language-"],
+pre[class*="language-"] {
+  color: #333;
+  background: none;
+  font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
+  text-align: left;
+  white-space: pre;
+  word-spacing: normal;
+  word-break: normal;
+  word-wrap: normal;
+  line-height: 1.4;
+
+  -moz-tab-size: 8;
+  -o-tab-size: 8;
+  tab-size: 8;
+
+  -webkit-hyphens: none;
+  -moz-hyphens: none;
+  -ms-hyphens: none;
+  hyphens: none;
+}
+
+/* Code blocks */
+pre[class*="language-"] {
+  padding: .8em;
+  overflow: auto;
+  /* border: 1px solid #ddd; */
+  border-radius: 3px;
+  /* background: #fff; */
+  background: #f5f5f5;
+}
+
+/* Inline code */
+:not(pre) > code[class*="language-"] {
+  padding: .1em;
+  border-radius: .3em;
+  white-space: normal;
+  background: #f5f5f5;
+}
+
+.token.comment,
+.token.blockquote {
+  color: #969896;
+}
+
+.token.cdata {
+  color: #183691;
+}
+
+.token.doctype,
+.token.punctuation,
+.token.variable,
+.token.macro.property {
+  color: #333;
+}
+
+.token.operator,
+.token.important,
+.token.keyword,
+.token.rule,
+.token.builtin {
+  color: #a71d5d;
+}
+
+.token.string,
+.token.url,
+.token.regex,
+.token.attr-value {
+  color: #183691;
+}
+
+.token.property,
+.token.number,
+.token.boolean,
+.token.entity,
+.token.atrule,
+.token.constant,
+.token.symbol,
+.token.command,
+.token.code {
+  color: #0086b3;
+}
+
+.token.tag,
+.token.selector,
+.token.prolog {
+  color: #63a35c;
+}
+
+.token.function,
+.token.namespace,
+.token.pseudo-element,
+.token.class,
+.token.class-name,
+.token.pseudo-class,
+.token.id,
+.token.url-reference .token.variable,
+.token.attr-name {
+  color: #795da3;
+}
+
+.token.entity {
+  cursor: help;
+}
+
+.token.title,
+.token.title .token.punctuation {
+  font-weight: bold;
+  color: #1d3e81;
+}
+
+.token.list {
+  color: #ed6a43;
+}
+
+.token.inserted {
+  background-color: #eaffea;
+  color: #55a532;
+}
+
+.token.deleted {
+  background-color: #ffecec;
+  color: #bd2c00;
+}
+
+.token.bold {
+  font-weight: bold;
+}
+
+.token.italic {
+  font-style: italic;
+}
+
+
+/* JSON */
+.language-json .token.property {
+  color: #183691;
+}
+
+.language-markup .token.tag .token.punctuation {
+  color: #333;
+}
+
+/* CSS */
+code.language-css,
+.language-css .token.function {
+  color: #0086b3;
+}
+
+/* YAML */
+.language-yaml .token.atrule {
+  color: #63a35c;
+}
+
+code.language-yaml {
+  color: #183691;
+}
+
+/* Ruby */
+.language-ruby .token.function {
+  color: #333;
+}
+
+/* Markdown */
+.language-markdown .token.url {
+  color: #795da3;
+}
+
+/* Makefile */
+.language-makefile .token.symbol {
+  color: #795da3;
+}
+
+.language-makefile .token.variable {
+  color: #183691;
+}
+
+.language-makefile .token.builtin {
+  color: #0086b3;
+}
+
+/* Bash */
+.language-bash .token.keyword {
+  color: #0086b3;
+}
+
+/* highlight */
+pre[data-line] {
+  position: relative;
+  padding: 1em 0 1em 3em;
+}
+pre[data-line] .line-highlight-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: transparent;
+  display: block;
+  width: 100%;
+}
+
+pre[data-line] .line-highlight {
+  position: absolute;
+  left: 0;
+  right: 0;
+  padding: inherit 0;
+  margin-top: 1em;
+  background: hsla(24, 20%, 50%,.08);
+  background: linear-gradient(to right, hsla(24, 20%, 50%,.1) 70%, hsla(24, 20%, 50%,0));
+  pointer-events: none;
+  line-height: inherit;
+  white-space: pre;
+}
+
+pre[data-line] .line-highlight:before, 
+pre[data-line] .line-highlight[data-end]:after {
+  content: attr(data-start);
+  position: absolute;
+  top: .4em;
+  left: .6em;
+  min-width: 1em;
+  padding: 0 .5em;
+  background-color: hsla(24, 20%, 50%,.4);
+  color: hsl(24, 20%, 95%);
+  font: bold 65%/1.5 sans-serif;
+  text-align: center;
+  vertical-align: .3em;
+  border-radius: 999px;
+  text-shadow: none;
+  box-shadow: 0 1px white;
+}
+
+pre[data-line] .line-highlight[data-end]:after {
+  content: attr(data-end);
+  top: auto;
+  bottom: .4em;
+}html body{font-family:"Helvetica Neue",Helvetica,"Segoe UI",Arial,freesans,sans-serif;font-size:16px;line-height:1.6;color:#333;background-color:#fff;overflow:initial;box-sizing:border-box;word-wrap:break-word}html body>:first-child{margin-top:0}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{line-height:1.2;margin-top:1em;margin-bottom:16px;color:#000}html body h1{font-size:2.25em;font-weight:300;padding-bottom:.3em}html body h2{font-size:1.75em;font-weight:400;padding-bottom:.3em}html body h3{font-size:1.5em;font-weight:500}html body h4{font-size:1.25em;font-weight:600}html body h5{font-size:1.1em;font-weight:600}html body h6{font-size:1em;font-weight:600}html body h1,html body h2,html body h3,html body h4,html body h5{font-weight:600}html body h5{font-size:1em}html body h6{color:#5c5c5c}html body strong{color:#000}html body del{color:#5c5c5c}html body a:not([href]){color:inherit;text-decoration:none}html body a{color:#08c;text-decoration:none}html body a:hover{color:#00a3f5;text-decoration:none}html body img{max-width:100%}html body>p{margin-top:0;margin-bottom:16px;word-wrap:break-word}html body>ul,html body>ol{margin-bottom:16px}html body ul,html body ol{padding-left:2em}html body ul.no-list,html body ol.no-list{padding:0;list-style-type:none}html body ul ul,html body ul ol,html body ol ol,html body ol ul{margin-top:0;margin-bottom:0}html body li{margin-bottom:0}html body li.task-list-item{list-style:none}html body li>p{margin-top:0;margin-bottom:0}html body .task-list-item-checkbox{margin:0 .2em .25em -1.8em;vertical-align:middle}html body .task-list-item-checkbox:hover{cursor:pointer}html body blockquote{margin:16px 0;font-size:inherit;padding:0 15px;color:#5c5c5c;background-color:#f0f0f0;border-left:4px solid #d6d6d6}html body blockquote>:first-child{margin-top:0}html body blockquote>:last-child{margin-bottom:0}html body hr{height:4px;margin:32px 0;background-color:#d6d6d6;border:0 none}html body table{margin:10px 0 15px 0;border-collapse:collapse;border-spacing:0;display:block;width:100%;overflow:auto;word-break:normal;word-break:keep-all}html body table th{font-weight:bold;color:#000}html body table td,html body table th{border:1px solid #d6d6d6;padding:6px 13px}html body dl{padding:0}html body dl dt{padding:0;margin-top:16px;font-size:1em;font-style:italic;font-weight:bold}html body dl dd{padding:0 16px;margin-bottom:16px}html body code{font-family:Menlo,Monaco,Consolas,'Courier New',monospace;font-size:.85em !important;color:#000;background-color:#f0f0f0;border-radius:3px;padding:.2em 0}html body code::before,html body code::after{letter-spacing:-0.2em;content:"\00a0"}html body pre>code{padding:0;margin:0;font-size:.85em !important;word-break:normal;white-space:pre;background:transparent;border:0}html body .highlight{margin-bottom:16px}html body .highlight pre,html body pre{padding:1em;overflow:auto;font-size:.85em !important;line-height:1.45;border:#d6d6d6;border-radius:3px}html body .highlight pre{margin-bottom:0;word-break:normal}html body pre code,html body pre tt{display:inline;max-width:initial;padding:0;margin:0;overflow:initial;line-height:inherit;word-wrap:normal;background-color:transparent;border:0}html body pre code:before,html body pre tt:before,html body pre code:after,html body pre tt:after{content:normal}html body p,html body blockquote,html body ul,html body ol,html body dl,html body pre{margin-top:0;margin-bottom:16px}html body kbd{color:#000;border:1px solid #d6d6d6;border-bottom:2px solid #c7c7c7;padding:2px 4px;background-color:#f0f0f0;border-radius:3px}@media print{html body{background-color:#fff}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{color:#000;page-break-after:avoid}html body blockquote{color:#5c5c5c}html body pre{page-break-inside:avoid}html body table{display:table}html body img{display:block;max-width:100%;max-height:100%}html body pre,html body code{word-wrap:break-word;white-space:pre}}.markdown-preview{width:100%;height:100%;box-sizing:border-box}.markdown-preview .pagebreak,.markdown-preview .newpage{page-break-before:always}.markdown-preview pre.line-numbers{position:relative;padding-left:3.8em;counter-reset:linenumber}.markdown-preview pre.line-numbers>code{position:relative}.markdown-preview pre.line-numbers .line-numbers-rows{position:absolute;pointer-events:none;top:1em;font-size:100%;left:0;width:3em;letter-spacing:-1px;border-right:1px solid #999;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.markdown-preview pre.line-numbers .line-numbers-rows>span{pointer-events:none;display:block;counter-increment:linenumber}.markdown-preview pre.line-numbers .line-numbers-rows>span:before{content:counter(linenumber);color:#999;display:block;padding-right:.8em;text-align:right}.markdown-preview .mathjax-exps .MathJax_Display{text-align:center !important}.markdown-preview:not([for="preview"]) .code-chunk .btn-group{display:none}.markdown-preview:not([for="preview"]) .code-chunk .status{display:none}.markdown-preview:not([for="preview"]) .code-chunk .output-div{margin-bottom:16px}.scrollbar-style::-webkit-scrollbar{width:8px}.scrollbar-style::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}.scrollbar-style::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,0.66);border:4px solid rgba(150,150,150,0.66);background-clip:content-box}html body[for="html-export"]:not([data-presentation-mode]){position:relative;width:100%;height:100%;top:0;left:0;margin:0;padding:0;overflow:auto}html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{position:relative;top:0}@media screen and (min-width:914px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{padding:2em calc(50% - 457px + 2em)}}@media screen and (max-width:914px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{font-size:14px !important;padding:1em}}@media print{html body[for="html-export"]:not([data-presentation-mode]) #sidebar-toc-btn{display:none}}html body[for="html-export"]:not([data-presentation-mode]) #sidebar-toc-btn{position:fixed;bottom:8px;left:8px;font-size:28px;cursor:pointer;color:inherit;z-index:99;width:32px;text-align:center;opacity:.4}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] #sidebar-toc-btn{opacity:1}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc{position:fixed;top:0;left:0;width:300px;height:100%;padding:32px 0 48px 0;font-size:14px;box-shadow:0 0 4px rgba(150,150,150,0.33);box-sizing:border-box;overflow:auto;background-color:inherit}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar{width:8px}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,0.66);border:4px solid rgba(150,150,150,0.66);background-clip:content-box}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc a{text-decoration:none}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc ul{padding:0 1.6em;margin-top:.8em}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc li{margin-bottom:.8em}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc ul{list-style-type:none}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{left:300px;width:calc(100% -  300px);padding:2em calc(50% - 457px -  150px);margin:0;box-sizing:border-box}@media screen and (max-width:1274px){html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{width:100%}}html body[for="html-export"]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .markdown-preview{left:50%;transform:translateX(-50%)}html body[for="html-export"]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .md-sidebar-toc{display:none}
+/* Please visit the URL below for more information: */
+/*   https://shd101wyy.github.io/markdown-preview-enhanced/#/customize-css */
+
+      </style>
+    </head>
+    <body for="html-export">
+      <div class="mume markdown-preview  ">
+      <h1 class="mume-header" id="1-%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8-%EA%B0%9C%EC%9A%94">1. 프로젝트 개요</h1>
+
+<ol>
+<li>python-django를 처음 배우면서 기존에 있던 웹 지식을 그대로 적용하여 간단한 웹페이지를 제작.</li>
+<li>front-end와 back-end를 완전히 분리하여 구현하는게 목적.</li>
+<li>가상 머신(Centos 7)3대를 사용하여 Database-server, djnago-server(AppServer), Apache(Web server)의 분리를 하고자 함.</li>
+<li>back-end에서 restApi를 직접 만들어 보고 front-end에서 URL로만 접근하여 데이터를 송수신 할수있도록 하는게 목적.</li>
+</ol>
+<p><strong>front-end는 front-end 기능 개발에 충실하고,<br></strong><br>
+<strong>back-end는 back-end 기능 개발에 충실하자.</strong></p>
+<p><a href="https://github.com/shkimm5189/djangoproject">RPOJECT GITHUB ADDRESS</a></p>
+<h1 class="mume-header" id="2-%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8-%EC%A7%84%ED%96%89-%ED%99%98%EA%B2%BD">2. 프로젝트 진행 환경</h1>
+
+<h2 class="mume-header" id="%EA%B8%B0%EC%88%A0-%EC%8A%A4%ED%83%9D">기술 스택</h2>
+
+<h3 class="mume-header" id="os">OS</h3>
+
+<ul>
+<li>Cenos 7</li>
+</ul>
+<h3 class="mume-header" id="server-side">Server-Side</h3>
+
+<ul>
+<li><strong>Python 3.8.10</strong></li>
+<li><strong>Django 3.2.3</strong>
+<ul>
+<li>djangorestframework</li>
+<li>django-rest-auth</li>
+<li>django-allauth</li>
+</ul>
+</li>
+<li><strong>MYSQL 5.7</strong></li>
+<li>MySQL Workbench</li>
+<li>Apache 2.4</li>
+<li>mod_wsgi</li>
+</ul>
+<h3 class="mume-header" id="client-side">Client-Side</h3>
+
+<ul>
+<li>Bootstrap</li>
+<li>Adminlte</li>
+<li>jQeury 3.6</li>
+<li>AJAX</li>
+</ul>
+<h3 class="mume-header" id="%EB%B2%84%EC%A0%84%EC%86%8C%EC%8A%A4-%EA%B4%80%EB%A6%AC">버전/소스 관리</h3>
+
+<ul>
+<li>Git / Github</li>
+</ul>
+<h1 class="mume-header" id="3-%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8-%EA%B5%AC%EC%A1%B0">3. 프로젝트 구조</h1>
+
+<h2 class="mume-header" id="django-%ED%8C%8C%EC%9D%BC-%EA%B5%AC%EC%A1%B0">Django 파일 구조</h2>
+
+<img src="https://github.com/shkimm5189/today-i-learned/blob/main/Django/img/proStruct.png" width="200" height="300">
+<table>
+<thead>
+<tr>
+<th>directory</th>
+<th>Role</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>djangoproject</td>
+<td>default 세팅 저장</td>
+</tr>
+<tr>
+<td>rest_api_board</td>
+<td>게시판 CRUD지원하는 rest Api 제공</td>
+</tr>
+<tr>
+<td>rest_api_account</td>
+<td>회원가입 및 로그인(token 발행, 쿠키저장) restApi 제공</td>
+</tr>
+<tr>
+<td>static</td>
+<td>- app : 직접 만든 js 파일  <br>-lib : css 및 js 파일</td>
+</tr>
+<tr>
+<td>templates</td>
+<td>html 파일</td>
+</tr>
+<tr>
+<td>testApp</td>
+<td>main page</td>
+</tr>
+</tbody>
+</table>
+<h2 class="mume-header" id="databse-%EA%B5%AC%EC%A1%B0">Databse 구조</h2>
+
+<img src="img/databaseStruct.png" width="" height="">
+<h2 class="mume-header" id="%EB%B0%B0%ED%8F%AC-%EC%9D%B8%ED%94%84%EB%9D%BC-%EA%B5%AC%EC%A1%B0">배포 인프라 구조</h2>
+
+<img src="img/infra.png" width="" height="">
+<h1 class="mume-header" id="4-%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8-%EA%B8%B0%EB%8A%A5">4. 프로젝트 기능</h1>
+
+<h2 class="mume-header" id="site-map">SITE MAP</h2>
+
+<pre data-role="codeBlock" data-info="" class="language-"><code>/testApp/           : mainpage 현재 게시물 모두 확인 (상세 정보는 modal로 확인가능)
+        / register  : 게시물 등록 페이지
+        / login     : 로그인 페이지
+        / signup    : 회원가입 페이지
+</code></pre><h2 class="mume-header" id="%EA%B2%8C%EC%8B%9C%ED%8C%90-rest-api">게시판 REST API</h2>
+
+<ul>
+<li>django rest framework를 이용하여 rest 서버 CRUD 구축</li>
+</ul>
+<p><strong>Content-type : Json</strong></p>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Url</th>
+<th>Role</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>GET</td>
+<td>게시물 모두 조회 : /api/boards/<br>특정 게시물 조회 : /api/board/{id}</td>
+<td></td>
+</tr>
+<tr>
+<td>POST</td>
+<td>/api/boards/</td>
+<td>게시물 등록</td>
+</tr>
+<tr>
+<td>PUT</td>
+<td>/api/boards/{id}</td>
+<td>게시물 수정</td>
+</tr>
+<tr>
+<td>DELETE</td>
+<td>/api/boards/{id}</td>
+<td>게시물 삭제</td>
+</tr>
+</tbody>
+</table>
+<h2 class="mume-header" id="%EC%9C%A0%EC%A0%80-rest-api">유저 REST API</h2>
+
+<ul>
+<li>회원 가입 및 로그인 구현 방식 : django에서 제공하는 user를 받아서 custom user를 생성하고 restframework에서 제공하는 토큰과 연동하여 회원가입시 토큰을 Database에 저장하고 로그인 시에 database에 저장된 토큰과 유저의 정보를 비교하여 토큰값으로 유저의 정보를 조회한다.<br>
+필요한 값은 토큰값과 함께 쿠키에 저장한다.</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Url</th>
+<th>Role</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>POST</td>
+<td>api/auth/token/signup</td>
+<td>회원 등록(token 생성)</td>
+</tr>
+<tr>
+<td>POST</td>
+<td>api/auth/token/login</td>
+<td>로그인 (쿠키 등록)</td>
+</tr>
+<tr>
+<td>GET</td>
+<td>api/auth/token/logout</td>
+<td>로그아웃(쿠키 삭제)</td>
+</tr>
+</tbody>
+</table>
+<h2 class="mume-header" id="%EA%B4%80%EB%A6%AC%EC%9E%90-%ED%8E%98%EC%9D%B4%EC%A7%80">관리자 페이지</h2>
+
+<ul>
+<li>Django에서 지원하는 기본 admin 페이지를 사용했다.</li>
+<li>관리자 페이지를 제공하기때문에 개발 시간이 많이 단축되었다.</li>
+</ul>
+<h1 class="mume-header" id="5-%EA%B5%AC%ED%98%84-%EC%BD%94%EB%93%9C">5. 구현 코드</h1>
+
+<h2 class="mume-header" id="%EA%B2%8C%EC%8B%9C%ED%8C%90-%EA%B5%AC%ED%98%84-%EC%A4%91-%EC%9D%BC%EB%B6%80">게시판 구현 중 일부</h2>
+
+<pre data-role="codeBlock" data-info="python" class="language-python"><span class="token comment"># models.py</span>
+<span class="token keyword">class</span> <span class="token class-name">MyBoard</span><span class="token punctuation">(</span>models<span class="token punctuation">.</span>Model<span class="token punctuation">)</span><span class="token punctuation">:</span>
+
+    subject <span class="token operator">=</span> models<span class="token punctuation">.</span>CharField<span class="token punctuation">(</span>max_length<span class="token operator">=</span><span class="token number">30</span><span class="token punctuation">,</span> null<span class="token operator">=</span><span class="token boolean">False</span><span class="token punctuation">)</span>
+    content <span class="token operator">=</span> models<span class="token punctuation">.</span>TextField<span class="token punctuation">(</span>max_length<span class="token operator">=</span><span class="token number">300</span><span class="token punctuation">,</span> null<span class="token operator">=</span><span class="token boolean">False</span><span class="token punctuation">)</span>
+    author <span class="token operator">=</span> models<span class="token punctuation">.</span>CharField<span class="token punctuation">(</span>max_length<span class="token operator">=</span><span class="token number">30</span><span class="token punctuation">,</span> null<span class="token operator">=</span><span class="token boolean">False</span><span class="token punctuation">)</span>
+    create_at <span class="token operator">=</span> models<span class="token punctuation">.</span>DateTimeField<span class="token punctuation">(</span>auto_now_add<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">,</span> null<span class="token operator">=</span><span class="token boolean">False</span><span class="token punctuation">)</span>
+    create_by <span class="token operator">=</span> models<span class="token punctuation">.</span>CharField<span class="token punctuation">(</span>max_length<span class="token operator">=</span><span class="token number">20</span><span class="token punctuation">,</span> null<span class="token operator">=</span><span class="token boolean">False</span><span class="token punctuation">)</span>
+    update_at <span class="token operator">=</span> models<span class="token punctuation">.</span>DateTimeField<span class="token punctuation">(</span>auto_now<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">)</span>
+    update_by <span class="token operator">=</span> models<span class="token punctuation">.</span>CharField<span class="token punctuation">(</span>max_length<span class="token operator">=</span><span class="token number">20</span><span class="token punctuation">,</span> null<span class="token operator">=</span><span class="token boolean">False</span><span class="token punctuation">)</span>
+
+    <span class="token keyword">class</span> <span class="token class-name">Meta</span><span class="token punctuation">:</span>
+        <span class="token comment"># 테이블 최신순 조회</span>
+        ordering <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">'-create_at'</span><span class="token punctuation">]</span>
+        db_table <span class="token operator">=</span> <span class="token string">"board_test"</span>
+
+    <span class="token keyword">def</span> <span class="token function">__str__</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">return</span> self<span class="token punctuation">.</span>subject
+</pre><pre data-role="codeBlock" data-info="python" class="language-python"><span class="token comment"># serializers.py</span>
+<span class="token keyword">class</span> <span class="token class-name">BoardSerializer</span><span class="token punctuation">(</span>serializers<span class="token punctuation">.</span>ModelSerializer<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">class</span> <span class="token class-name">Meta</span><span class="token punctuation">:</span>
+        model <span class="token operator">=</span> MyBoard
+        fields <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token string">'id'</span><span class="token punctuation">,</span> <span class="token string">'subject'</span><span class="token punctuation">,</span> <span class="token string">'create_by'</span><span class="token punctuation">,</span> <span class="token string">'create_at'</span><span class="token punctuation">,</span> <span class="token string">'content'</span><span class="token punctuation">)</span>
+</pre><pre data-role="codeBlock" data-info="python" class="language-python"><span class="token comment"># views.py 중 GET Method 구현</span>
+<span class="token keyword">class</span> <span class="token class-name">BoardView</span><span class="token punctuation">(</span>APIView<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token triple-quoted-string string">"""
+    GET /api/boards/
+        /api/boards/{id}
+    """</span>
+    <span class="token keyword">def</span> <span class="token function">get</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> req<span class="token punctuation">,</span> <span class="token operator">**</span>kwargs<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        boardId <span class="token operator">=</span> kwargs<span class="token punctuation">.</span>get<span class="token punctuation">(</span><span class="token string">'idx'</span><span class="token punctuation">)</span>
+        <span class="token keyword">if</span> boardId <span class="token keyword">is</span> <span class="token boolean">None</span><span class="token punctuation">:</span>
+            boardQueryset <span class="token operator">=</span> MyBoard<span class="token punctuation">.</span>objects<span class="token punctuation">.</span><span class="token builtin">all</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+            boardQuerysetSerializer <span class="token operator">=</span> BoardSerializer<span class="token punctuation">(</span>boardQueryset<span class="token punctuation">,</span> many<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">)</span>
+            <span class="token keyword">return</span> Response<span class="token punctuation">(</span>boardQuerysetSerializer<span class="token punctuation">.</span>data<span class="token punctuation">,</span> status<span class="token operator">=</span>status<span class="token punctuation">.</span>HTTP_200_OK<span class="token punctuation">)</span>
+        <span class="token keyword">else</span><span class="token punctuation">:</span>
+            boardSrializer <span class="token operator">=</span> BoardSerializer<span class="token punctuation">(</span>MyBoard<span class="token punctuation">.</span>objects<span class="token punctuation">.</span>get<span class="token punctuation">(</span><span class="token builtin">id</span><span class="token operator">=</span>boardId<span class="token punctuation">)</span><span class="token punctuation">)</span>
+            <span class="token keyword">return</span> Response<span class="token punctuation">(</span>boardSrializer<span class="token punctuation">.</span>data<span class="token punctuation">,</span> status<span class="token operator">=</span>status<span class="token punctuation">.</span>HTTP_200_OK<span class="token punctuation">)</span>
+</pre><blockquote>
+<p>CBV 방식으로 작성 했으며 APIView를 상속 받아 CRUD를 구현하였다.</p>
+</blockquote>
+<h2 class="mume-header" id="%EB%A1%9C%EA%B7%B8%EC%9D%B8-%EA%B5%AC%ED%98%84-%EC%A4%91-%EC%9D%BC%EB%B6%80">로그인 구현 중 일부</h2>
+
+<pre data-role="codeBlock" data-info="python" class="language-python">views<span class="token punctuation">.</span>py
+<span class="token keyword">class</span> <span class="token class-name">SignupView</span><span class="token punctuation">(</span>APIView<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">def</span> <span class="token function">post</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> request<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        user <span class="token operator">=</span> User<span class="token punctuation">.</span>objects<span class="token punctuation">.</span>create_user<span class="token punctuation">(</span>username<span class="token operator">=</span>request<span class="token punctuation">.</span>data<span class="token punctuation">[</span><span class="token string">'id'</span><span class="token punctuation">]</span><span class="token punctuation">,</span> password<span class="token operator">=</span>request<span class="token punctuation">.</span>data<span class="token punctuation">[</span><span class="token string">'password'</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+        profile <span class="token operator">=</span> models<span class="token punctuation">.</span>Profiles<span class="token punctuation">(</span>user<span class="token operator">=</span>user<span class="token punctuation">,</span> nickname<span class="token operator">=</span>request<span class="token punctuation">.</span>data<span class="token punctuation">[</span><span class="token string">'nickname'</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+        user<span class="token punctuation">.</span>save<span class="token punctuation">(</span><span class="token punctuation">)</span>
+        profile<span class="token punctuation">.</span>save<span class="token punctuation">(</span><span class="token punctuation">)</span>
+        <span class="token comment"># user의 값으로 새로운 토큰을 발행하여 키값을 리턴</span>
+        token <span class="token operator">=</span> Token<span class="token punctuation">.</span>objects<span class="token punctuation">.</span>create<span class="token punctuation">(</span>user<span class="token operator">=</span>user<span class="token punctuation">)</span>
+        <span class="token keyword">return</span> Response<span class="token punctuation">(</span><span class="token punctuation">{</span><span class="token string">"Token"</span><span class="token punctuation">:</span> token<span class="token punctuation">.</span>key<span class="token punctuation">}</span><span class="token punctuation">)</span>
+
+
+<span class="token keyword">class</span> <span class="token class-name">LoginView</span><span class="token punctuation">(</span>APIView<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">def</span> <span class="token function">post</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> request<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        user <span class="token operator">=</span> authenticate<span class="token punctuation">(</span>username<span class="token operator">=</span>request<span class="token punctuation">.</span>data<span class="token punctuation">[</span><span class="token string">'id'</span><span class="token punctuation">]</span><span class="token punctuation">,</span> password<span class="token operator">=</span>request<span class="token punctuation">.</span>data<span class="token punctuation">[</span><span class="token string">'password'</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+        <span class="token comment">#기존의 유저가 있다면 실행</span>
+        <span class="token keyword">if</span> user <span class="token keyword">is</span> <span class="token keyword">not</span> <span class="token boolean">None</span><span class="token punctuation">:</span>
+            <span class="token comment"># 요청 받은 값과 일치 하는 토큰 값을 가져옴</span>
+            token <span class="token operator">=</span> Token<span class="token punctuation">.</span>objects<span class="token punctuation">.</span>get<span class="token punctuation">(</span>user<span class="token operator">=</span>user<span class="token punctuation">)</span>
+            pro <span class="token operator">=</span> Profiles<span class="token punctuation">.</span>objects<span class="token punctuation">.</span><span class="token builtin">filter</span><span class="token punctuation">(</span>user<span class="token operator">=</span>user<span class="token punctuation">)</span><span class="token punctuation">.</span>values<span class="token punctuation">(</span><span class="token punctuation">)</span>
+            <span class="token comment">#</span>
+            <span class="token comment"># 로그인 유지를 위한 토큰 값과 해당 닉네임을 쿠키에 저장</span>
+            response <span class="token operator">=</span> Response<span class="token punctuation">(</span><span class="token punctuation">)</span>
+            response<span class="token punctuation">.</span>set_cookie<span class="token punctuation">(</span>key<span class="token operator">=</span><span class="token string">"Token"</span><span class="token punctuation">,</span> value<span class="token operator">=</span>token<span class="token punctuation">.</span>key<span class="token punctuation">)</span>
+            response<span class="token punctuation">.</span>set_cookie<span class="token punctuation">(</span>key<span class="token operator">=</span><span class="token string">"nickname"</span><span class="token punctuation">,</span> value<span class="token operator">=</span>pro<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">.</span>get<span class="token punctuation">(</span><span class="token string">'nickname'</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+            response<span class="token punctuation">.</span>data <span class="token operator">=</span> <span class="token punctuation">{</span>
+                <span class="token string">"Token"</span><span class="token punctuation">:</span> token<span class="token punctuation">.</span>key<span class="token punctuation">,</span>
+                <span class="token string">"nickname"</span><span class="token punctuation">:</span> pro<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">.</span>get<span class="token punctuation">(</span><span class="token string">'nickname'</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+            <span class="token punctuation">}</span>
+            <span class="token keyword">return</span> response
+        <span class="token keyword">else</span><span class="token punctuation">:</span>
+            <span class="token keyword">return</span> Response<span class="token punctuation">(</span><span class="token string">"login error"</span><span class="token punctuation">,</span> status<span class="token punctuation">.</span>HTTP_401_UNAUTHORIZED<span class="token punctuation">)</span>
+</pre><h2 class="mume-header" id="apache-mod_wsgi">Apache-mod_wsgi</h2>
+
+<pre data-role="codeBlock" data-info="python" class="language-python"><span class="token comment"># WSGI.py</span>
+<span class="token keyword">import</span> os
+<span class="token keyword">import</span> sys
+<span class="token keyword">from</span> django<span class="token punctuation">.</span>core<span class="token punctuation">.</span>wsgi <span class="token keyword">import</span> get_wsgi_application
+path <span class="token operator">=</span> <span class="token string">'/root/djangoproject'</span>
+<span class="token keyword">if</span> path <span class="token keyword">not</span> <span class="token keyword">in</span> sys<span class="token punctuation">.</span>path<span class="token punctuation">:</span>
+        sys<span class="token punctuation">.</span>path<span class="token punctuation">.</span>append<span class="token punctuation">(</span>path<span class="token punctuation">)</span>
+os<span class="token punctuation">.</span>environ<span class="token punctuation">.</span>setdefault<span class="token punctuation">(</span><span class="token string">'DJANGO_SETTINGS_MODULE'</span><span class="token punctuation">,</span> <span class="token string">'djangoproject.settings'</span><span class="token punctuation">)</span>
+application <span class="token operator">=</span> get_wsgi_application<span class="token punctuation">(</span><span class="token punctuation">)</span>
+</pre><h1 class="mume-header" id="6-%EB%8F%99%EC%9E%91-%ED%99%94%EB%A9%B4">6. 동작 화면</h1>
+
+<ul>
+<li>testApp/<br>
+<img src="img/boardsget.png" width="" height=""></li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>No</th>
+<th>Role</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>login page로 이동</td>
+</tr>
+<tr>
+<td>2</td>
+<td>각 게시물에 대한 modal을 띄움</td>
+</tr>
+<tr>
+<td>3</td>
+<td>글 등록 페이지로 이동</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>testApp/<br>
+<img src="img/boardupdatedelete.png" width="" height=""></li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>No</th>
+<th>Role</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>해당 게시물 변경 요청 및 modal 종료</td>
+</tr>
+<tr>
+<td>2</td>
+<td>해당 게시물 삭제 요청 및 modla 종료</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>testApp/ register<br>
+<img src="img/boardsregister.png" width="" height=""></li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>No</th>
+<th>Role</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>해당 게시물 등록 요청 및 메인페이지로 이동</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>testApp/ signup<br>
+<img src="img/userRegister.png" width="" height=""></li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>No</th>
+<th>Role</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>user 생성 및 user에대한 토큰 생성 후 main page이동</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>testApp/ login<br>
+<img src="img/loginpage.png" width="" height=""></li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>No</th>
+<th>Role</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>토큰 값, 닉네임 쿠키 등록 및 로그인</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>로그인시 쿠키값 / 변경사항<br>
+<img src="img/beforelogin.png" width="" height=""><br>
+<img src="img/afterlogin.png" width="" height=""><br>
+<img src="img/cookie.png" width="" height=""></li>
+</ul>
+<pre data-role="codeBlock" data-info="" class="language-"><code>로그인 시 헤더에 부분을 "login"을 logout으로 바꿈.
+cookie에 해당 로그인 토큰값, 닉네임을 저장
+-&gt; 로그인 상태에서 게시물 작성 시, 작성자에 닉네임으로 자동 표시
+로그인 상태에서 로그인 페이지로 다시 이동할경우, 로그인되었다는 메세지 출력후 다시 메인페이지로 이동
+</code></pre><h1 class="mume-header" id="7-%EA%B3%B5%EB%B6%80%ED%95%9C-%EB%82%B4%EC%9A%A9%EB%93%A4">7. 공부한 내용들</h1>
+
+<h4 class="mume-header" id="orm-%EC%82%AC%EC%9A%A9%EC%9D%98-%EC%9E%A5%EB%8B%A8%EC%A0%90">ORM 사용의 장단점</h4>
+
+<pre data-role="codeBlock" data-info="" class="language-"><code>장점
+1. 동일한 목적을 같는 쿼리문도 개발자마다 다를수있기때문에 통일성이 깨질수있다.
+2. 개발자가 쿼리문을 잘못 작성하게 되면 시스템의 성능이 저하될수있다.
+3. DB를 변경하면 특정 DB에 의존하는 모든것을 수정 해야 하므로 유지보수가 어려울수있다.
+</code></pre><blockquote>
+<p>개인 생각 : ORM은 개념 자체가 어렵고 러닝커브가 높기 떄문에 이해가 잘된 상태에서 시스템에 적용해야 한다고 생각한다. 성능적 측면에서는 sql을 그냥 타이핑 해넣는게 나을수있기때문이다. N+1문제나 orm을 적용했을 때 나타나는 성능적 문제를 충분히 고려해야한다고 생각한다.</p>
+</blockquote>
+<h4 class="mume-header" id="%EB%A1%9C%EA%B7%B8%EC%9D%B8-%EA%B5%AC%ED%98%84">로그인 구현</h4>
+
+<ul>
+<li>로그인 기능을 직접 구현 해보면서 로그인정보를 어디에 저장하면 좋을지 고민해보았다.</li>
+</ul>
+<pre data-role="codeBlock" data-info="" class="language-"><code>인증과 인가는 기본적으로 구현해야하는 기능으로 로그인이 대표적이다.
+쿠키/세션을 이용하거나 토큰을 이용하는 방법이 있다.
+ 여기서 유저마다 토큰을 발행하는 식으로 구현을 했는데 토큰 값을 어디에 저장해서 운영해야 하는지 많은 생각을 하게되었다.
+
+결론적으로 보안이 크게 상관 없다면 웹스토리지에 저장해도 된다.
+ 하지만 웹 스토리지에 저장된 값은 javascript로 언제든지 접근 할수있어 XSS공격에 취약 할수있다.
+
+하지만 쿠키에 저장하면 HttpOnly 속성을 사용하여 javascript로 접근을 막을수있다.
+따라서, 보안적 측면에서는 쿠키에 저장하는것이 좀더 나을수있다.
+</code></pre><h1 class="mume-header" id="8-%EC%B0%B8%EA%B3%A0-%EC%9E%90%EB%A3%8C">8. 참고 자료</h1>
+
+<ul>
+<li>책
+<ul>
+<li>점프 투 장고</li>
+</ul>
+</li>
+<li>사이트
+<ul>
+<li><a href="https://docs.djangoproject.com/ko/3.2/">Django 공식문서</a></li>
+<li><a href="https://www.django-rest-framework.org/">Django restframework 공식문서</a></li>
+<li><a href="https://django-rest-auth.readthedocs.io/en/latest/">Django rest auth 공식문서</a></li>
+<li><a href="https://api.jquery.com/">jQeury 공식문서</a></li>
+</ul>
+</li>
+</ul>
+
+      </div>
+      
+      
+    
+    
+    
+    
+    
+    
+    
+    
+  
+    </body></html>

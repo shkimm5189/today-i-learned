@@ -726,3 +726,8 @@ firewall-cmd --add-source=192.168.0.0/24 --zone=home
 ```
 
 ### Runtime 설정과 Permanent 설정
+
+
+
+
+### centos / ubuntu 패키지 관리 차이

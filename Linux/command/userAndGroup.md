@@ -34,6 +34,18 @@ cccr3계정을 생성하시오 홈디렉토리는 /home/guest 쉘은/bin/sh
 useradd -d /home/guest -s /bin/sh
 ```
 
+
+ ```
+ # useradd 할때 기본적인 적용사항
+ /etc/default/useradd
+
+ # 비밀번호 수정 기한 설정
+ /etc/login.defs
+ PASS_MAX_DAYS # 암호를 사용할수있는 최대기한 설정
+ PASS_MIN_DAYS
+ PASS_MIN_LEN
+PASS_WARN_AGE
+ ```
 ## 사용자 설정 변경
 - 이미 생성된 유저에 대한 환경 설정을 변경할수있다.
 ```bash

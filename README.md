@@ -15,6 +15,7 @@
 
 ## 참고 블로그 및 자료  
 [객체 지향 설계 원칙 : SOLID](https://www.nextree.co.kr/p6960/)
+
 [파이썬 code convention : PEP8 (번역본)](https://luavis.me/python/python-convention)
 
 # 읽은 책 / 읽어볼 책
