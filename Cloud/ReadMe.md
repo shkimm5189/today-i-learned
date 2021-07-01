@@ -19,11 +19,15 @@ cpu는 intel 8086이 전신이 된다.
 x86 (32bit)
 x86_64 (64bit)
 x64 (64bit)
+
+AMD : AMD64 -> 반드시 AMD의 64bit를 뜻하는 것은 아니다.
+모든 64bit arch를 의미
+Intel :EM64T
+인텔이 64bit arch를 만들었지만 실제 64비트로 동작하지않았고 AMD가 진짜 64bit arch를 제작했다. 
 ```
 
-
-
-
+## 가상화  (Hypervisor)
+- 가상화가 없으면 클라우드를 할수없다.
 
 
 
