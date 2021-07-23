@@ -1,5 +1,5 @@
-Kafaka
-======
+Kafka
+=====
 
 등장배경
 ========
@@ -25,6 +25,8 @@ Binary, CSV, JSON, Avro
 (앞으로 추가될 사항에 대해 어떻게 유연하게 대처)
 ```
 
+> data schema? entity, attribute, relationship, 제약조건 등을 전반적으로 정의한 메타데이터 집합
+
 1.	새로운 시스템을 추가
 
 ```
@@ -41,7 +43,7 @@ source system -> apache kafka -> target system
 Kafka 사용 이유
 ===============
 
-1.	분산됬으며 (Distrubuted), \*탄력적인 아키텍처(Resilient Architecture), 내결함성 > 탄력적 아키텍처? 확장 가능한 아키텍처와 비슷하며, 서비스 통합, 배포, 생성 시간을 단축시키는것.
+1.	분산됬으며 (Distrubuted), 탄력적인 아키텍처(Resilient Architecture), 내결함성 > 탄력적 아키텍처? 확장 가능한 아키텍처와 비슷하며, 서비스 통합, 배포, 생성 시간을 단축시키는것.
 
 2.	수평적 확장
 
