@@ -1,8 +1,13 @@
 # log cleanup policy
 Kafka는 기본적으로 데이터를 만료시킨다. = log cleanup
 
+log retention(보관 기간)이 지난 데이터의 제거를 어떻게 할건가
+
+
 ## cleanup policy
+
 1. log.cleanup.policy=delete
+
 모든 유저에대한 topic의 기본값
 ```
 age 1주일 기준으로 데이터를 삭제
@@ -19,6 +24,7 @@ consumer offset에 대한 topic 기본값
 ## cleanup when why?
 로그정리는 파티션 세그먼트에서 발생함.
 
+디스크에 있는 데이터 사이즈조절, 쓸모없는 데이터 삭제
 
 - 로그 정리가 발생할때
 ```
@@ -40,3 +46,6 @@ log.cleaner.backoff.ms로 확인 가능하며 15초 마다 정리
 ```
 2. log.retention.bytes
 각 파티션의 최대크기(byte)
+```
+
+```

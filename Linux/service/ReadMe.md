@@ -122,5 +122,3 @@ systemctl restart autofs
 ```
 
 nfs와 smaba의 차이
-## LDAP (FreeIPA)
-y
