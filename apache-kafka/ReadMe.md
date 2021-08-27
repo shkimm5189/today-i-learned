@@ -68,3 +68,8 @@ Kafka 사용 이유
 5.	Stream processing
 6.	시스템의 종속성 분리 -> DB 오버헤드 줄임
 7.	Spark, Flink, Storm, Hadoop 같은 빅데이터기술과 통합
+
+
+
+
+# Apache kafka & confluent

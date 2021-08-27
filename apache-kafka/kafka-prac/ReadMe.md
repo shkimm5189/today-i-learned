@@ -6,7 +6,7 @@ java ver : 1.8
 
 
 VM - Ubuntu
-zookeeper, kafka server 
+zookeeper, kafka server
 ```
 
 gradle dependencies
@@ -28,4 +28,16 @@ slf4j-simple : ver 1.7.25
 ```
 [dependencies configure docs](https://docs.gradle.org/current/userguide/dependency_management_for_java_projects.html#sec:configurations_java_tutorial)
 
-#
+# Producer
+
+# Consumer
+#### auto_offset_reset_config
+topic의 offset 정보가 존재하지 않을때, 설정된 값으로 consuming 정책을 결정함.
+- latest : 가장 마지막 오프셋부터
+- ealist : 가장 처음 오프셋부터
+- none : 해당 컨슈머 그룹이 가져가고자 하는 consumer offset 정보가 없다면 exception 발생
+
+# Kafka Bi-Directional Compatibilty (클라이언트의 양방향성)
+카프카 브로커와 카프카 클라이언트의 버전이 달라도 사용하는데 문제 없다.
+
+카프카 브로커의 버전이 낮고 클라이언트 버전이 최신 버전이여도 운영가능.
