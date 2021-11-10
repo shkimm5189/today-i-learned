@@ -69,7 +69,7 @@
 **Content-type : Json**
 |Method|Url|Role|
 |--|--|--|
-|GET|게시물 모두 조회 : /api/boards/<br>특정 게시물 조회 : /api/board/{id}|
+|GET|게시물 모두 조회 : /api/boards/<br>특정 게시물 조회 : /api/boards/{id}|
 |POST|/api/boards/|게시물 등록|
 |PUT|/api/boards/{id}|게시물 수정|
 |DELETE|/api/boards/{id}|게시물 삭제|
